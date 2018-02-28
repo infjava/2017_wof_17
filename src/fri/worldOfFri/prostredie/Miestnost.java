@@ -18,6 +18,7 @@ import java.util.HashMap;
 public class Miestnost {
     private String popisMiestnosti;
     private HashMap<String, Miestnost> vychody;
+    private final String nazov;
 
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
@@ -26,9 +27,10 @@ public class Miestnost {
      * 
      * @param popis text popisu miestnosti.
      */
-    public Miestnost(String popis) {
+    public Miestnost(String nazov, String popis) {
         this.vychody = new HashMap<String, Miestnost>();
         this.popisMiestnosti = popis;
+        this.nazov = nazov;
     }
 
     /**
@@ -38,8 +40,8 @@ public class Miestnost {
      * @param nazov nazov smeru.
      * @param vychod miestnost danym smerom .
      */
-    public void nastavVychod(String nazov, Miestnost vychod) {
-        this.vychody.put(nazov, vychod);
+    public void nastavVychod(Miestnost vychod) {
+        this.vychody.put(vychod.nazov, vychod);
     }
 
     public Miestnost getVychod(String smer) {
@@ -47,6 +49,7 @@ public class Miestnost {
     }
 
     public void vypisInfo() {
+        System.out.println(this.nazov);
         System.out.println(this.popisMiestnosti);
         System.out.print("Vychody: ");
         
