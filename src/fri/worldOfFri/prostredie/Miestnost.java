@@ -2,6 +2,7 @@ package fri.worldOfFri.prostredie;
 
 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Trieda Miestnost realizuje jednu miestnost/priestor v celom priestore hry.
@@ -19,6 +20,7 @@ public class Miestnost {
     private String popisMiestnosti;
     private HashMap<String, Miestnost> vychody;
     private final String nazov;
+    private final HashMap<String, Predmet> zoznamPredmetov;
 
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
@@ -31,6 +33,7 @@ public class Miestnost {
         this.vychody = new HashMap<String, Miestnost>();
         this.popisMiestnosti = popis;
         this.nazov = nazov;
+        this.zoznamPredmetov = new HashMap<String, Predmet>();
     }
 
     /**
@@ -51,12 +54,28 @@ public class Miestnost {
     public void vypisInfo() {
         System.out.println(this.nazov);
         System.out.println(this.popisMiestnosti);
-        System.out.print("Vychody: ");
         
-        for (String nazov : this.vychody.keySet()) {
-            System.out.print(nazov + " ");
+        this.vypisZoznam("Vychody", this.vychody.keySet());
+        this.vypisZoznam("Predmety", this.zoznamPredmetov.keySet());
+    }
+
+    private void vypisZoznam(String nazov, Set<String> zoznam) {
+        if (!zoznam.isEmpty()) {
+            System.out.print(nazov + ": ");
+            
+            for (String nazovPolozky : zoznam) {
+                System.out.print(nazovPolozky + " ");
+            }
+            
+            System.out.println();
         }
-        
-        System.out.println();
+    }
+
+    void vlozPredmet(Predmet predmet) {
+        this.zoznamPredmetov.put(predmet.getNazov(), predmet);
+    }
+
+    public Predmet odstranPredmet(String nazovPredmetu) {
+        return this.zoznamPredmetov.remove(nazovPredmetu);
     }
 }

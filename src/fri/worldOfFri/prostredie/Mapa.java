@@ -28,6 +28,8 @@ public class Mapa {
         terasa.nastavVychod(vratnica);
         terasa.nastavVychod(aula);
         
+        terasa.vlozPredmet(new Predmet("sekera"));
+        
         vratnica.nastavVychod(terasa);
         vratnica.nastavVychod(ra);
         vratnica.nastavVychod(rb);

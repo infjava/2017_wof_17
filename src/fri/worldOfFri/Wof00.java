@@ -20,6 +20,13 @@ public class Wof00 {
     - questy
         - vysetrenie vrazdy
     - veci
+        - operacie
+            - prenasat
+            - pouzit
+            - zdvihnut
+                > zdvihni sekera
+            - polozit
+                > poloz sekera
         - navleky
         - sekera
         - uv lampa
