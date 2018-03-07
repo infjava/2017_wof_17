@@ -39,8 +39,47 @@ public class Hrac {
         return true;
     }
 
-    void zdvihniPredmet(String nazovPredmetu) {
+    boolean zdvihniPredmet(String nazovPredmetu) {
         Predmet zdvihany = this.aktualnaMiestnost.odstranPredmet(nazovPredmetu);
+        
+        if (zdvihany == null) {
+            return false;
+        }
+        
         this.inventar.put(nazovPredmetu, zdvihany);
+        return true;
+    }
+
+    void vypisStaty() {
+        if (!this.inventar.isEmpty()) {
+            System.out.println("Predmety v inventari:");
+            
+            for (String nazovPredmetu : this.inventar.keySet()) {
+                System.out.println("- " + nazovPredmetu);
+            }
+        } else {
+            System.out.println("Inventar mas prazdny!");
+        }
+    }
+
+    boolean polozPredmet(String nazovPredmetu) {
+        Predmet pokladany = this.inventar.remove(nazovPredmetu);
+        
+        if (pokladany == null) {
+            return false;
+        }
+        
+        this.aktualnaMiestnost.vlozPredmet(pokladany);
+        return true;
+    }
+
+    void pouziPredmet(String nazovPredmetu) {
+        Predmet pouzivany = this.inventar.get(nazovPredmetu);
+        
+        if (pouzivany == null) {
+            return;
+        }
+        
+        pouzivany.pouziSa();
     }
 }

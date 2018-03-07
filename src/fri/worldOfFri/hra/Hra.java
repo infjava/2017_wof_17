@@ -100,6 +100,15 @@ public class Hra  {
             case "zdvihni":
                 this.zdvihniPredmet(prikaz);
                 return false;
+            case "staty":
+                this.vypisStaty(prikaz);
+                return false;
+            case "poloz":
+                this.polozPredmet(prikaz);
+                return false;
+            case "pouzi":
+                this.pouziPredmet(prikaz);
+                return false;
             default:
                 return false;
         }
@@ -159,7 +168,23 @@ public class Hra  {
     }
 
     private void zdvihniPredmet(Prikaz prikaz) {
-        this.hrac.zdvihniPredmet(prikaz.getParameter());
+        if (!this.hrac.zdvihniPredmet(prikaz.getParameter())) {
+            System.out.println("Nezadarilo sa");
+        }
+    }
+
+    private void vypisStaty(Prikaz prikaz) {
+        this.hrac.vypisStaty();
+    }
+
+    private void polozPredmet(Prikaz prikaz) {
+        if (!this.hrac.polozPredmet(prikaz.getParameter())) {
+            System.out.println("Nezadarilo sa");
+        }
+    }
+
+    private void pouziPredmet(Prikaz prikaz) {
+        this.hrac.pouziPredmet(prikaz.getParameter());
     }
 
 }

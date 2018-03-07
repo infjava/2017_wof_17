@@ -23,10 +23,13 @@ public class Wof00 {
         - operacie
             - prenasat
             - pouzit
+                > pouzi sekera
             - zdvihnut
                 > zdvihni sekera
             - polozit
                 > poloz sekera
+            - zobrazenie "statov"
+                > staty
         - navleky
         - sekera
         - uv lampa

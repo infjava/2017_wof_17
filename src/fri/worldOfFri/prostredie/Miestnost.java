@@ -71,7 +71,7 @@ public class Miestnost {
         }
     }
 
-    void vlozPredmet(Predmet predmet) {
+    public void vlozPredmet(Predmet predmet) {
         this.zoznamPredmetov.put(predmet.getNazov(), predmet);
     }
 

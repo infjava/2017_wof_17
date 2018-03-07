@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import java.util.Random;
+
 /**
  *
  * @author janik
@@ -19,5 +21,14 @@ public class Predmet {
 
     public String getNazov() {
         return this.nazov;
+    }
+
+    public void pouziSa() {
+        Random r = new Random();
+        
+        if (r.nextInt(100) < 20) {
+            System.out.println("Je mi to veeelmi luto, ale si mrtvy!");
+            System.exit(0);
+        }
     }
 }
