@@ -5,30 +5,29 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.hra.Hrac;
 import java.util.Random;
 
-/**
- *
- * @author janik
- */
-public class Predmet {
+class Sekera implements IPredmet {
 
-    private final String nazov;
-
-    public Predmet(String nazov) {
-        this.nazov = nazov;
-    }
-
+    @Override
     public String getNazov() {
-        return this.nazov;
+        return "sekera";
     }
 
-    public void pouziSa() {
+    @Override
+    public void pouziSa(Hrac hrac) {
         Random r = new Random();
-        
+
         if (r.nextInt(100) < 20) {
             System.out.println("Je mi to veeelmi luto, ale si mrtvy!");
             System.exit(0);
         }
     }
+
+    @Override
+    public boolean daSaPolozit() {
+        return true;
+    }
+
 }

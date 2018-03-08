@@ -20,7 +20,7 @@ public class Miestnost {
     private String popisMiestnosti;
     private HashMap<String, Miestnost> vychody;
     private final String nazov;
-    private final HashMap<String, Predmet> zoznamPredmetov;
+    private final HashMap<String, IPredmet> zoznamPredmetov;
 
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
@@ -33,7 +33,11 @@ public class Miestnost {
         this.vychody = new HashMap<String, Miestnost>();
         this.popisMiestnosti = popis;
         this.nazov = nazov;
-        this.zoznamPredmetov = new HashMap<String, Predmet>();
+        this.zoznamPredmetov = new HashMap<String, IPredmet>();
+    }
+
+    public String getNazov() {
+        return this.nazov;
     }
 
     /**
@@ -71,11 +75,11 @@ public class Miestnost {
         }
     }
 
-    public void vlozPredmet(Predmet predmet) {
+    public void vlozPredmet(IPredmet predmet) {
         this.zoznamPredmetov.put(predmet.getNazov(), predmet);
     }
 
-    public Predmet odstranPredmet(String nazovPredmetu) {
+    public IPredmet odstranPredmet(String nazovPredmetu) {
         return this.zoznamPredmetov.remove(nazovPredmetu);
     }
 }

@@ -5,9 +5,9 @@
  */
 package fri.worldOfFri.hra;
 
+import fri.worldOfFri.prostredie.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
-import fri.worldOfFri.prostredie.Predmet;
 import java.util.HashMap;
 
 /**
@@ -17,11 +17,11 @@ import java.util.HashMap;
 public class Hrac {
 
     private Miestnost aktualnaMiestnost;
-    private final HashMap<String, Predmet> inventar;
+    private final HashMap<String, IPredmet> inventar;
 
     Hrac(Mapa mapa) {
         this.aktualnaMiestnost = mapa.getStartovaciaMiestnost();
-        this.inventar = new HashMap<String, Predmet>();
+        this.inventar = new HashMap<String, IPredmet>();
     }
 
     public Miestnost getAktualnaMiestnost() {
@@ -40,7 +40,7 @@ public class Hrac {
     }
 
     boolean zdvihniPredmet(String nazovPredmetu) {
-        Predmet zdvihany = this.aktualnaMiestnost.odstranPredmet(nazovPredmetu);
+        IPredmet zdvihany = this.aktualnaMiestnost.odstranPredmet(nazovPredmetu);
         
         if (zdvihany == null) {
             return false;
@@ -63,23 +63,28 @@ public class Hrac {
     }
 
     boolean polozPredmet(String nazovPredmetu) {
-        Predmet pokladany = this.inventar.remove(nazovPredmetu);
+        IPredmet pokladany = this.inventar.get(nazovPredmetu);
         
         if (pokladany == null) {
             return false;
         }
         
+        if (!pokladany.daSaPolozit()) {
+            return false;
+        }
+        
+        this.inventar.remove(nazovPredmetu);
         this.aktualnaMiestnost.vlozPredmet(pokladany);
         return true;
     }
 
     void pouziPredmet(String nazovPredmetu) {
-        Predmet pouzivany = this.inventar.get(nazovPredmetu);
+        IPredmet pouzivany = this.inventar.get(nazovPredmetu);
         
         if (pouzivany == null) {
             return;
         }
         
-        pouzivany.pouziSa();
+        pouzivany.pouziSa(this);
     }
 }
