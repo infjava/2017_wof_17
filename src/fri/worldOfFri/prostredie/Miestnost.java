@@ -82,4 +82,8 @@ public class Miestnost {
     public IPredmet odstranPredmet(String nazovPredmetu) {
         return this.zoznamPredmetov.remove(nazovPredmetu);
     }
+    
+    public Iterable<String> getVychody() {
+        return this.vychody.keySet();
+    }
 }

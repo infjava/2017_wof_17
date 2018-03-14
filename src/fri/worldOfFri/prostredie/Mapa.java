@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author janik
@@ -12,8 +14,11 @@ package fri.worldOfFri.prostredie;
 public class Mapa {
 
     private final Miestnost startovaciaMiestnost;
+    private final ArrayList<Miestnost> zoznamMiestnosti;
 
     public Mapa() {
+        this.zoznamMiestnosti = new ArrayList<Miestnost>();
+        
         // vytvorenie miestnosti
         Miestnost terasa = new Miestnost("terasa", "prave tu prebieha FRIfest");
         Miestnost vratnica = new Miestnost("vratnica", "vchod na fakultu");
@@ -25,11 +30,22 @@ public class Mapa {
         Miestnost rb = new Miestnost("rb", "temna chodba");
         Miestnost sklad = new Miestnost("sklad", "sklad vrazednych zbrani");
         
+        this.zoznamMiestnosti.add(terasa);
+        this.zoznamMiestnosti.add(vratnica);
+        this.zoznamMiestnosti.add(ra);
+        this.zoznamMiestnosti.add(wc);
+        this.zoznamMiestnosti.add(ra13);
+        this.zoznamMiestnosti.add(bufet);
+        this.zoznamMiestnosti.add(aula);
+        this.zoznamMiestnosti.add(rb);
+        this.zoznamMiestnosti.add(sklad);
+        
         terasa.nastavVychod(vratnica);
         terasa.nastavVychod(aula);
         
         terasa.vlozPredmet(new Sekera());
         terasa.vlozPredmet(new Navleky());
+        terasa.vlozPredmet(new PredmetMapa(this));
         
         vratnica.nastavVychod(terasa);
         vratnica.nastavVychod(ra);
@@ -63,5 +79,8 @@ public class Mapa {
     public Miestnost getStartovaciaMiestnost() {
         return this.startovaciaMiestnost;
     }
-    
+
+    public Iterable<Miestnost> getZoznamMiestnosti() {
+        return this.zoznamMiestnosti;
+    }
 }
