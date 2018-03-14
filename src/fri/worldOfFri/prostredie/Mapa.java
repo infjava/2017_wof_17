@@ -40,38 +40,24 @@ public class Mapa {
         this.zoznamMiestnosti.add(rb);
         this.zoznamMiestnosti.add(sklad);
         
-        terasa.nastavVychod(vratnica);
-        terasa.nastavVychod(aula);
+        this.vytvorDvere(terasa, vratnica);
+        this.vytvorDvere(terasa, aula);
         
         terasa.vlozPredmet(new Sekera());
         terasa.vlozPredmet(new Navleky());
         terasa.vlozPredmet(new PredmetMapa(this));
         
-        vratnica.nastavVychod(terasa);
-        vratnica.nastavVychod(ra);
-        vratnica.nastavVychod(rb);
+        this.vytvorDvere(vratnica, ra);
+        this.vytvorDvere(vratnica, rb);
         
-        ra.nastavVychod(vratnica);
-        ra.nastavVychod(wc);
-        ra.nastavVychod(ra13);
-        ra.nastavVychod(bufet);
-        ra.nastavVychod(aula);
+        this.vytvorDvere(ra, wc);
+        this.vytvorDvere(ra, ra13);
+        this.vytvorDvere(ra, bufet);
+        this.vytvorDvere(ra, aula);
         
-        wc.nastavVychod(ra);
+        this.vytvorDvere(bufet, aula);
         
-        ra13.nastavVychod(ra);
-        
-        bufet.nastavVychod(ra);
-        bufet.nastavVychod(aula);
-        
-        aula.nastavVychod(terasa);
-        aula.nastavVychod(ra);
-        aula.nastavVychod(bufet);
-        
-        rb.nastavVychod(vratnica);
-        rb.nastavVychod(sklad);
-        
-        sklad.nastavVychod(rb);
+        this.vytvorDvere(rb, sklad);
 
         this.startovaciaMiestnost = terasa;  // startovacia miestnost hry
     }
@@ -82,5 +68,11 @@ public class Mapa {
 
     public Iterable<Miestnost> getZoznamMiestnosti() {
         return this.zoznamMiestnosti;
+    }
+
+    private void vytvorDvere(Miestnost miestnostZ, Miestnost miestnostDo) {
+        Dvere dvere = new Dvere(miestnostZ, miestnostDo);
+        miestnostZ.nastavVychod(dvere);
+        miestnostDo.nastavVychod(dvere);
     }
 }
