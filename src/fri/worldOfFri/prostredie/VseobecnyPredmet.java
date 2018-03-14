@@ -6,7 +6,6 @@
 package fri.worldOfFri.prostredie;
 
 import fri.worldOfFri.hra.Hrac;
-import java.util.Random;
 
 /**
  *
