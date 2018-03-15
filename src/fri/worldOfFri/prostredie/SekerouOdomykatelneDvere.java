@@ -34,4 +34,8 @@ public class SekerouOdomykatelneDvere implements IDvere {
     public String getNazov(Miestnost odkial) {
         return "zamknute";
     }
+    
+    public void odomkni() {
+        this.zamknute = false;
+    }
 }

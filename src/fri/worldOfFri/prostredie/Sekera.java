@@ -23,6 +23,19 @@ class Sekera implements IPredmet {
             System.out.println("Je mi to veeelmi luto, ale si mrtvy!");
             System.exit(0);
         }
+        
+        final Miestnost aktualnaMiestnost = hrac.getAktualnaMiestnost();
+        
+        for (String vychod : aktualnaMiestnost.getVychody()) {
+            final IDvere dvere = aktualnaMiestnost.getDvere(vychod);
+            
+            if (dvere instanceof SekerouOdomykatelneDvere) {
+                ((SekerouOdomykatelneDvere)dvere).odomkni();
+                
+                System.out.println("Odomkol si dvere do miestnosti "
+                        + dvere.getCiel(aktualnaMiestnost).getNazov());
+            }
+        }
     }
 
     @Override

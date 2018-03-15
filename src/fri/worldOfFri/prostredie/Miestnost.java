@@ -86,4 +86,8 @@ public class Miestnost {
     public Iterable<String> getVychody() {
         return this.vychody.keySet();
     }
+
+    IDvere getDvere(String smer) {
+        return this.vychody.get(smer);
+    }
 }
