@@ -9,7 +9,7 @@ package fri.worldOfFri.prostredie;
  *
  * @author janik
  */
-class Dvere {
+class Dvere implements IDvere {
     private final Miestnost miestnostA;
     private final Miestnost miestnostB;
 
@@ -18,7 +18,8 @@ class Dvere {
         this.miestnostB = miestnostB;
     }
     
-    Miestnost getCiel(Miestnost odkial) {
+    @Override
+    public Miestnost getCiel(Miestnost odkial) {
         if (odkial == this.miestnostA) {
             return this.miestnostB;
         } else if (odkial == this.miestnostB) {
