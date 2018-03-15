@@ -30,6 +30,11 @@ public class Mapa {
         Miestnost rb = new Miestnost("rb", "temna chodba");
         Miestnost sklad = new Miestnost("sklad", "sklad vrazednych zbrani");
         
+        Miestnost vytah = new Miestnost("vytah", "vozi hore-dole");
+        Miestnost ra1 = new Miestnost("ra1", "ra na prvom poschodi");
+        Miestnost ra2 = new Miestnost("ra2", "ra na druhom poschodi");
+        Miestnost ra3 = new Miestnost("ra3", "ra na tretom poschodi");
+        
         this.zoznamMiestnosti.add(terasa);
         this.zoznamMiestnosti.add(vratnica);
         this.zoznamMiestnosti.add(ra);
@@ -54,6 +59,16 @@ public class Mapa {
         this.vytvorDvere(ra, ra13);
         this.vytvorDvere(ra, bufet);
         this.vytvorDvere(ra, aula);
+        
+        VytahoveDvere vytahDvere = new VytahoveDvere(vytah, new Miestnost[] {ra, ra1, ra2, ra3});
+        
+        vytah.nastavVychod(vytahDvere);
+        ra.nastavVychod(vytahDvere);
+        ra1.nastavVychod(vytahDvere);
+        ra2.nastavVychod(vytahDvere);
+        ra3.nastavVychod(vytahDvere);
+        
+        vytah.vlozPredmet(new OvladacVytahu());
         
         this.vytvorDvere(bufet, aula);
         
