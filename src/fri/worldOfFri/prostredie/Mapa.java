@@ -50,7 +50,7 @@ public class Mapa {
         this.vytvorDvere(vratnica, ra);
         this.vytvorDvere(vratnica, rb);
         
-        this.vytvorDvere(ra, wc);
+        this.vytvorDvere(ra, wc, new SekerouOdomykatelneDvere(ra, wc));
         this.vytvorDvere(ra, ra13);
         this.vytvorDvere(ra, bufet);
         this.vytvorDvere(ra, aula);
@@ -71,7 +71,10 @@ public class Mapa {
     }
 
     private void vytvorDvere(Miestnost miestnostZ, Miestnost miestnostDo) {
-        Dvere dvere = new Dvere(miestnostZ, miestnostDo);
+        this.vytvorDvere(miestnostZ, miestnostDo, new Dvere(miestnostZ, miestnostDo));
+    }
+
+    private void vytvorDvere(Miestnost miestnostZ, Miestnost miestnostDo, IDvere dvere) {
         miestnostZ.nastavVychod(dvere);
         miestnostDo.nastavVychod(dvere);
     }

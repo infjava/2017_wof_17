@@ -48,7 +48,7 @@ public class Miestnost {
      * @param vychod miestnost danym smerom .
      */
     public void nastavVychod(IDvere vychod) {
-        this.vychody.put(vychod.getCiel(this).getNazov(), vychod);
+        this.vychody.put(vychod.getNazov(this), vychod);
     }
 
     public Miestnost getVychod(String smer) {

@@ -13,4 +13,6 @@ public interface IDvere {
 
     Miestnost getCiel(Miestnost odkial);
     
+    String getNazov(Miestnost odkial);
+    
 }

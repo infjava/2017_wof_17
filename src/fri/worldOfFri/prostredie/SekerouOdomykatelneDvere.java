@@ -5,22 +5,23 @@
  */
 package fri.worldOfFri.prostredie;
 
-/**
- *
- * @author janik
- */
-class Dvere implements IDvere {
+
+public class SekerouOdomykatelneDvere implements IDvere {
     private final Miestnost miestnostA;
     private final Miestnost miestnostB;
+    private boolean zamknute;
 
-    Dvere(Miestnost miestnostA, Miestnost miestnostB) {
+    public SekerouOdomykatelneDvere(Miestnost miestnostA, Miestnost miestnostB) {
         this.miestnostA = miestnostA;
         this.miestnostB = miestnostB;
+        this.zamknute = true;
     }
-    
+
     @Override
     public Miestnost getCiel(Miestnost odkial) {
-        if (odkial == this.miestnostA) {
+        if (this.zamknute) {
+            return null;
+        } else if (odkial == this.miestnostA) {
             return this.miestnostB;
         } else if (odkial == this.miestnostB) {
             return this.miestnostA;
@@ -31,6 +32,6 @@ class Dvere implements IDvere {
 
     @Override
     public String getNazov(Miestnost odkial) {
-        return this.getCiel(odkial).getNazov();
+        return "zamknute";
     }
 }
