@@ -1,6 +1,7 @@
 package fri.worldOfFri.prostredie;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -89,5 +90,29 @@ public class Miestnost {
 
     IDvere getDvere(String smer) {
         return this.vychody.get(smer);
+    }
+
+    Iterable<Miestnost> getCieloveMiestnosti() {
+        ArrayList<Miestnost> cieloveMiestnosti = new ArrayList<Miestnost>();
+        
+        for (IDvere dvere : this.vychody.values()) {
+            for (Miestnost miestnost : dvere.getVsetkyMozneVychody(this)) {
+                cieloveMiestnosti.add(miestnost);
+            }
+        }
+        
+        return cieloveMiestnosti;
+    }
+
+    IDvere getDvereDo(Miestnost miestnost) {
+        for (IDvere dvere : this.vychody.values()) {
+            for (Miestnost miestnostDveri : dvere.getVsetkyMozneVychody(this)) {
+                if (miestnost == miestnostDveri) {
+                    return dvere;
+                }
+            }
+        }
+        
+        return null;
     }
 }

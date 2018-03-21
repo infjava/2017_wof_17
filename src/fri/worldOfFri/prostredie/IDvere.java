@@ -15,4 +15,6 @@ public interface IDvere {
     
     String getNazov(Miestnost odkial);
     
+    Iterable<Miestnost> getVsetkyMozneVychody(Miestnost odkial);
+    
 }

@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import java.util.Arrays;
+
 
 public class SekerouOdomykatelneDvere implements IDvere {
     private final Miestnost miestnostA;
@@ -37,5 +39,16 @@ public class SekerouOdomykatelneDvere implements IDvere {
     
     public void odomkni() {
         this.zamknute = false;
+    }
+
+    @Override
+    public Iterable<Miestnost> getVsetkyMozneVychody(Miestnost odkial) {
+        if (odkial == this.miestnostA) {
+            return Arrays.asList(this.miestnostB);
+        } else if (odkial == this.miestnostB) {
+            return Arrays.asList(this.miestnostA);
+        } else {
+            return Arrays.asList();
+        }
     }
 }

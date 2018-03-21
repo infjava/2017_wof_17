@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import java.util.Arrays;
+
 /**
  *
  * @author janik
@@ -53,5 +55,16 @@ class VytahoveDvere implements IDvere {
         this.pozicia += this.smer;
         
         System.out.println("Vytah sa pohol na " + this.getCiel(this.vytah).getNazov());
+    }
+
+    @Override
+    public Iterable<Miestnost> getVsetkyMozneVychody(Miestnost odkial) {
+        if (odkial == this.vytah) {
+            return Arrays.asList(this.vychody);
+        } else if (this.vychody[this.pozicia] == odkial) {
+            return Arrays.asList(this.vytah);
+        } else {
+            return Arrays.asList();
+        }
     }
 }

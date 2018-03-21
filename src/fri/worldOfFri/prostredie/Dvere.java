@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie;
 
+import java.util.Arrays;
+
 /**
  *
  * @author janik
@@ -32,5 +34,16 @@ class Dvere implements IDvere {
     @Override
     public String getNazov(Miestnost odkial) {
         return this.getCiel(odkial).getNazov();
+    }
+
+    @Override
+    public Iterable<Miestnost> getVsetkyMozneVychody(Miestnost odkial) {
+        final Miestnost ciel = this.getCiel(odkial);
+        
+        if (ciel == null) {
+            return Arrays.asList();
+        }
+        
+        return Arrays.asList(ciel);
     }
 }
