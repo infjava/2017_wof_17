@@ -14,6 +14,7 @@ import fri.worldOfFri.prostredie.dvere.IDvere;
 import fri.worldOfFri.prostredie.dvere.VytahoveDvere;
 import fri.worldOfFri.prostredie.dvere.Dvere;
 import fri.worldOfFri.prostredie.dvere.SekerouOdomykatelneDvere;
+import fri.worldOfFri.prostredie.npc.Npc;
 import java.util.ArrayList;
 
 /**
@@ -65,6 +66,8 @@ public class Mapa {
         terasa.vlozPredmet(new Navleky());
         terasa.vlozPredmet(new PredmetMapa(this));
         terasa.vlozPredmet(new Navigacia(this));
+        
+        terasa.postavNpc(new Npc("ucitel"));
         
         this.vytvorDvere(vratnica, ra);
         this.vytvorDvere(vratnica, rb);

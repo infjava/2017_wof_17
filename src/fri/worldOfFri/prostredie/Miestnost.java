@@ -3,6 +3,7 @@ package fri.worldOfFri.prostredie;
 
 import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.dvere.IDvere;
+import fri.worldOfFri.prostredie.npc.Npc;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -24,6 +25,7 @@ public class Miestnost {
     private final HashMap<String, IDvere> vychody;
     private final String nazov;
     private final HashMap<String, IPredmet> zoznamPredmetov;
+    private final HashMap<String, Npc> zoznamNpc;
 
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
@@ -37,6 +39,7 @@ public class Miestnost {
         this.popisMiestnosti = popis;
         this.nazov = nazov;
         this.zoznamPredmetov = new HashMap<String, IPredmet>();
+        this.zoznamNpc = new HashMap<String, Npc>();
     }
 
     public String getNazov() {
@@ -70,6 +73,7 @@ public class Miestnost {
         
         this.vypisZoznam("Vychody", this.vychody.keySet());
         this.vypisZoznam("Predmety", this.zoznamPredmetov.keySet());
+        this.vypisZoznam("Npc", this.zoznamNpc.keySet());
     }
 
     private void vypisZoznam(String nazov, Set<String> zoznam) {
@@ -122,5 +126,9 @@ public class Miestnost {
         }
         
         return null;
+    }
+
+    void postavNpc(Npc npc) {
+        this.zoznamNpc.put(npc.getMeno(), npc);
     }
 }
