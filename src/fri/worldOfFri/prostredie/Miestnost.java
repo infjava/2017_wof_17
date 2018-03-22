@@ -131,4 +131,8 @@ public class Miestnost {
     void postavNpc(Npc npc) {
         this.zoznamNpc.put(npc.getMeno(), npc);
     }
+
+    public Npc getNpc(String meno) {
+        return this.zoznamNpc.get(meno);
+    }
 }

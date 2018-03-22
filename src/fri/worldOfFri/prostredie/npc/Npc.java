@@ -19,4 +19,8 @@ public class Npc {
     public String getMeno() {
         return this.meno;
     }
+
+    public void hovor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

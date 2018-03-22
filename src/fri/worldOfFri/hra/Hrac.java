@@ -8,6 +8,7 @@ package fri.worldOfFri.hra;
 import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
+import fri.worldOfFri.prostredie.npc.Npc;
 import java.util.HashMap;
 
 /**
@@ -86,5 +87,15 @@ public class Hrac {
         }
         
         pouzivany.pouziSa(this);
+    }
+
+    void hovorSNpc(String meno) {
+        Npc npc = this.getAktualnaMiestnost().getNpc(meno);
+        
+        if (npc == null) {
+            return;
+        }
+        
+        npc.hovor();
     }
 }
