@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fri.worldOfFri.prostredie;
+package fri.worldOfFri.prostredie.dvere;
 
+import fri.worldOfFri.prostredie.Miestnost;
 import java.util.Arrays;
 
 /**
  *
  * @author janik
  */
-class VytahoveDvere implements IDvere {
+public class VytahoveDvere implements IDvere {
 
     private final Miestnost vytah;
     private final Miestnost[] vychody;
     private int pozicia;
     private int smer;
 
-    VytahoveDvere(Miestnost vytah, Miestnost[] vychody) {
+    public VytahoveDvere(Miestnost vytah, Miestnost[] vychody) {
         this.vytah = vytah;
         this.vychody = vychody;
         this.pozicia = 0;
@@ -45,7 +46,7 @@ class VytahoveDvere implements IDvere {
         }
     }
     
-    void posunVytah() {
+    public void posunVytah() {
         int ocakavanaPozicia = this.pozicia + this.smer;
         
         if (ocakavanaPozicia < 0 || ocakavanaPozicia >= this.vychody.length) {

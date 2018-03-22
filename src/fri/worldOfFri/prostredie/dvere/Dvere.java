@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fri.worldOfFri.prostredie;
+package fri.worldOfFri.prostredie.dvere;
 
+import fri.worldOfFri.prostredie.Miestnost;
 import java.util.Arrays;
 
 /**
  *
  * @author janik
  */
-class Dvere implements IDvere {
+public class Dvere implements IDvere {
     private final Miestnost miestnostA;
     private final Miestnost miestnostB;
 
-    Dvere(Miestnost miestnostA, Miestnost miestnostB) {
+    public Dvere(Miestnost miestnostA, Miestnost miestnostB) {
         this.miestnostA = miestnostA;
         this.miestnostB = miestnostB;
     }

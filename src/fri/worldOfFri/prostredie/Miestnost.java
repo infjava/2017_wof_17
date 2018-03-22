@@ -1,6 +1,8 @@
 package fri.worldOfFri.prostredie;
 
 
+import fri.worldOfFri.prostredie.predmety.IPredmet;
+import fri.worldOfFri.prostredie.dvere.IDvere;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -94,7 +96,7 @@ public class Miestnost {
         return this.vychody.keySet();
     }
 
-    IDvere getDvere(String smer) {
+    public IDvere getDvere(String smer) {
         return this.vychody.get(smer);
     }
 
@@ -110,7 +112,7 @@ public class Miestnost {
         return cieloveMiestnosti;
     }
 
-    IDvere getDvereDo(Miestnost miestnost) {
+    public IDvere getDvereDo(Miestnost miestnost) {
         for (IDvere dvere : this.vychody.values()) {
             for (Miestnost miestnostDveri : dvere.getVsetkyMozneVychody(this)) {
                 if (miestnost == miestnostDveri) {

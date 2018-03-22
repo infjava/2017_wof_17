@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fri.worldOfFri.prostredie;
+package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
+import fri.worldOfFri.prostredie.Mapa;
+import fri.worldOfFri.prostredie.Miestnost;
 
 /**
  *
@@ -15,7 +17,7 @@ public class PredmetMapa implements IPredmet {
 
     private final Mapa mapa;
 
-    PredmetMapa(Mapa mapa) {
+    public PredmetMapa(Mapa mapa) {
         this.mapa = mapa;
     }
 

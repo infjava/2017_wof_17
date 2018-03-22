@@ -5,6 +5,15 @@
  */
 package fri.worldOfFri.prostredie;
 
+import fri.worldOfFri.prostredie.predmety.Navleky;
+import fri.worldOfFri.prostredie.predmety.Navigacia;
+import fri.worldOfFri.prostredie.predmety.Sekera;
+import fri.worldOfFri.prostredie.predmety.OvladacVytahu;
+import fri.worldOfFri.prostredie.predmety.PredmetMapa;
+import fri.worldOfFri.prostredie.dvere.IDvere;
+import fri.worldOfFri.prostredie.dvere.VytahoveDvere;
+import fri.worldOfFri.prostredie.dvere.Dvere;
+import fri.worldOfFri.prostredie.dvere.SekerouOdomykatelneDvere;
 import java.util.ArrayList;
 
 /**
@@ -99,7 +108,7 @@ public class Mapa {
         miestnostDo.nastavVychod(dvere);
     }
 
-    Miestnost getMiestnost(String nazovCielu) {
+    public Miestnost getMiestnost(String nazovCielu) {
         for (Miestnost miestnost : this.zoznamMiestnosti) {
             if (miestnost.getNazov().equals(nazovCielu)) {
                 return miestnost;
@@ -109,7 +118,7 @@ public class Mapa {
         return null;
     }
 
-    Iterable<Miestnost> getCesta(Miestnost vychod, Miestnost ciel) {
+    public Iterable<Miestnost> getCesta(Miestnost vychod, Miestnost ciel) {
         int cisloVychod = this.getCisloMiestnosti(vychod);
         int cisloCiel = this.getCisloMiestnosti(ciel);
         
