@@ -49,6 +49,39 @@ public class Wof00 {
         - citanie kodu
     - levelovanie
     */
+    /*
+    priklad rozhovoru:
+    > hovor ucitel
+    A) dobry den
+    B) nemate navleky?
+    > A
+    dobry den
+    co potrebujete?
+    A) nemate navleky?
+    B) nemate pizzu?
+    > A
+    nech sa paci (da nam navleky)
+    
+    > hovor ucitel
+    A) dobry den
+    B) nemate navleky?
+    > A
+    dobry den
+    co potrebujete?
+    A) nemate navleky?
+    B) nemate pizzu?
+    > B
+    chrum chrum chrum... uz nie
+    A) nemate navleky?
+    > A
+    nech sa paci (da nam navleky)
+    
+    > hovor ucitel
+    A) dobry den
+    B) nemate navleky?
+    > B
+    nie (50% sanca ze sa nastve, ak nemam sekeru, konci hra)
+    */
     public static void main(String[] args) {
         Hra hra = new Hra();
         hra.hraj();
