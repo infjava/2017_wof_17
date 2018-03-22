@@ -18,8 +18,8 @@ import java.util.Set;
  * @version 2012.02.21
  */
 public class Miestnost {
-    private String popisMiestnosti;
-    private HashMap<String, IDvere> vychody;
+    private final String popisMiestnosti;
+    private final HashMap<String, IDvere> vychody;
     private final String nazov;
     private final HashMap<String, IPredmet> zoznamPredmetov;
 
@@ -53,7 +53,13 @@ public class Miestnost {
     }
 
     public Miestnost getVychod(String smer) {
-        return this.vychody.get(smer).getCiel(this);
+        final IDvere ciel = this.vychody.get(smer);
+        
+        if (ciel == null) {
+            return null;
+        }
+        
+        return ciel.getCiel(this);
     }
 
     public void vypisInfo() {

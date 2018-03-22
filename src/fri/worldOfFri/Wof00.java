@@ -40,8 +40,8 @@ public class Wof00 {
     - peniaze
     - npc
         - ucitel (predava navleky)
-    - boss
-        - vrah
+        - boss
+            - vrah
     - hudbu do pozadia (zatial nie)
     - 4K (zatial nie)
     - ability
