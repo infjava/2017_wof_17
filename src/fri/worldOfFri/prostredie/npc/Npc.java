@@ -11,9 +11,11 @@ package fri.worldOfFri.prostredie.npc;
  */
 public class Npc {
     private final String meno;
+    private final VrcholRozhovoru zaciatokRozhovoru;
 
     public Npc(String meno, VrcholRozhovoru zaciatokRozhovoru) {
         this.meno = meno;
+        this.zaciatokRozhovoru = zaciatokRozhovoru;
     }
 
     public String getMeno() {
@@ -21,6 +23,6 @@ public class Npc {
     }
 
     public void hovor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.zaciatokRozhovoru.vypis();
     }
 }
