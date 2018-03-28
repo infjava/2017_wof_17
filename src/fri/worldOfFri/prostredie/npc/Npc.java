@@ -32,6 +32,7 @@ public class Npc {
         System.out.print("> ");
         char znak = vstup.nextLine().charAt(0);
         
-        System.out.println(znak);
+        VrcholRozhovoru dalsi = this.zaciatokRozhovoru.getDalsi(znak);
+        dalsi.vypis();
     }
 }

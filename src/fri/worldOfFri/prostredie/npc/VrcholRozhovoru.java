@@ -13,27 +13,39 @@ import java.util.ArrayList;
  */
 public class VrcholRozhovoru {
 
-    private final ArrayList<String> odpovede;
+    private final ArrayList<Odpoved> odpovede;
+    private final String hlaska;
 
     public VrcholRozhovoru() {
-        this.odpovede = new ArrayList<String>();
+        this.odpovede = new ArrayList<Odpoved>();
+        this.hlaska = null;
     }
 
     public VrcholRozhovoru(String hlaska) {
-        this.odpovede = new ArrayList<String>();
+        this.odpovede = new ArrayList<Odpoved>();
+        this.hlaska = hlaska;
     }
 
     public void pridajOdpoved(String odpoved, VrcholRozhovoru dalsiVrchol) {
-        this.odpovede.add(odpoved);
+        this.odpovede.add(new Odpoved(odpoved, dalsiVrchol));
     }
 
     void vypis() {
+        if (this.hlaska != null) {
+            System.out.println(this.hlaska);
+        }
+        
         char znakOdpovede = 'A';
-        for (String odpoved : this.odpovede) {
-            System.out.format("%c) %s%n", znakOdpovede, odpoved);
+        for (Odpoved odpoved : this.odpovede) {
+            System.out.format("%c) %s%n", znakOdpovede, odpoved.getOdpoved());
             //System.out.println(znakOdpovede + ")" + odpoved);
             znakOdpovede++;
         }
     }
-    
+
+    VrcholRozhovoru getDalsi(char znak) {
+        int index = znak - 'A';
+        
+        return this.odpovede.get(index).getDalsiVrchol();
+    }
 }
