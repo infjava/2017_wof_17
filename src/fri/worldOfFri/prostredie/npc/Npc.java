@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie.npc;
 
+import java.util.Scanner;
+
 /**
  *
  * @author janik
@@ -24,5 +26,12 @@ public class Npc {
 
     public void hovor() {
         this.zaciatokRozhovoru.vypis();
+        
+        Scanner vstup = new Scanner(System.in);
+        
+        System.out.print("> ");
+        char znak = vstup.nextLine().charAt(0);
+        
+        System.out.println(znak);
     }
 }
