@@ -12,7 +12,7 @@ package fri.worldOfFri.prostredie.npc;
 public class Npc {
     private final String meno;
 
-    public Npc(String meno) {
+    public Npc(String meno, VrcholRozhovoru zaciatokRozhovoru) {
         this.meno = meno;
     }
 

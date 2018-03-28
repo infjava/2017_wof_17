@@ -15,6 +15,7 @@ import fri.worldOfFri.prostredie.dvere.VytahoveDvere;
 import fri.worldOfFri.prostredie.dvere.Dvere;
 import fri.worldOfFri.prostredie.dvere.SekerouOdomykatelneDvere;
 import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.prostredie.npc.VrcholRozhovoru;
 import java.util.ArrayList;
 
 /**
@@ -67,7 +68,21 @@ public class Mapa {
         terasa.vlozPredmet(new PredmetMapa(this));
         terasa.vlozPredmet(new Navigacia(this));
         
-        terasa.postavNpc(new Npc("ucitel"));
+        VrcholRozhovoru ucitelZaciatok = new VrcholRozhovoru();
+        VrcholRozhovoru ucitelPozdravenie = new VrcholRozhovoru("dobry den\nco potrebujete?");
+        VrcholRozhovoru ucitelNie = new VrcholRozhovoru("nie!");
+        VrcholRozhovoru ucitelDaNavleky = new VrcholRozhovoru("nech sa paci");
+        VrcholRozhovoru ucitelZjePizzu = new VrcholRozhovoru("chrum chrum chrum... uz nie");
+        
+        ucitelZaciatok.pridajOdpoved("dobry den", ucitelPozdravenie);
+        ucitelZaciatok.pridajOdpoved("nemate navleky?", ucitelNie);
+        
+        ucitelPozdravenie.pridajOdpoved("nemate navleky?", ucitelDaNavleky);
+        ucitelPozdravenie.pridajOdpoved("nemate pizzu?", ucitelNie);
+        
+        ucitelZjePizzu.pridajOdpoved("nemate pizzu?", ucitelDaNavleky);
+        
+        terasa.postavNpc(new Npc("ucitel", ucitelZaciatok));
         
         this.vytvorDvere(vratnica, ra);
         this.vytvorDvere(vratnica, rb);
