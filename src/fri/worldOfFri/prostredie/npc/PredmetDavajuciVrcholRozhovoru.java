@@ -5,13 +5,18 @@
  */
 package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.hra.Hrac;
+import fri.worldOfFri.prostredie.predmety.IPredmet;
+
 
 public class PredmetDavajuciVrcholRozhovoru implements IVrcholRozhovoru {
 
     private final String hlaska;
+    private IPredmet davanyPredmet;
 
-    public PredmetDavajuciVrcholRozhovoru(String hlaska) {
+    public PredmetDavajuciVrcholRozhovoru(String hlaska, IPredmet davanyPredmet) {
         this.hlaska = hlaska;
+        this.davanyPredmet = davanyPredmet;
     }
 
     @Override
@@ -21,12 +26,24 @@ public class PredmetDavajuciVrcholRozhovoru implements IVrcholRozhovoru {
 
     @Override
     public void vypis() {
-        System.out.println(this.hlaska);
+        if (this.davanyPredmet != null) {
+            System.out.println(this.hlaska);
+        } else {
+            System.out.println("Sorry!");
+        }
     }
 
     @Override
     public IVrcholRozhovoru getDalsi(char znak) {
         return null;
+    }
+
+    @Override
+    public void akcia(Hrac hrac) {
+        if (this.davanyPredmet != null) {
+            hrac.vlozPredmet(this.davanyPredmet);
+            this.davanyPredmet = null;
+        }
     }
     
 }

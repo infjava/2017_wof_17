@@ -96,6 +96,10 @@ public class Hrac {
             return;
         }
         
-        npc.hovor();
+        npc.hovor(this);
+    }
+
+    public void vlozPredmet(IPredmet davanyPredmet) {
+        this.inventar.put(davanyPredmet.getNazov(), davanyPredmet);
     }
 }

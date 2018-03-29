@@ -5,6 +5,7 @@
  */
 package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.hra.Hrac;
 import java.util.ArrayList;
 
 /**
@@ -53,5 +54,10 @@ public class VrcholRozhovoru implements IVrcholRozhovoru {
     @Override
     public boolean jeKoniec() {
         return this.odpovede.isEmpty();
+    }
+
+    @Override
+    public void akcia(Hrac hrac) {
+        
     }
 }

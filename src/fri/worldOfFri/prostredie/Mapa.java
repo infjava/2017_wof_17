@@ -65,14 +65,17 @@ public class Mapa {
         this.vytvorDvere(terasa, aula);
         
         terasa.vlozPredmet(new Sekera());
-        terasa.vlozPredmet(new Navleky());
+        //terasa.vlozPredmet(new Navleky());
         terasa.vlozPredmet(new PredmetMapa(this));
         terasa.vlozPredmet(new Navigacia(this));
         
         VrcholRozhovoru ucitelZaciatok = new VrcholRozhovoru();
         VrcholRozhovoru ucitelPozdravenie = new VrcholRozhovoru("dobry den\nco potrebujete?");
         VrcholRozhovoru ucitelNie = new VrcholRozhovoru("nie!");
-        PredmetDavajuciVrcholRozhovoru ucitelDaNavleky = new PredmetDavajuciVrcholRozhovoru("nech sa paci");
+        PredmetDavajuciVrcholRozhovoru ucitelDaNavleky = new PredmetDavajuciVrcholRozhovoru(
+                "nech sa paci",
+                new Navleky()
+        );
         VrcholRozhovoru ucitelZjePizzu = new VrcholRozhovoru("chrum chrum chrum... uz nie");
         
         ucitelZaciatok.pridajOdpoved("dobry den", ucitelPozdravenie);

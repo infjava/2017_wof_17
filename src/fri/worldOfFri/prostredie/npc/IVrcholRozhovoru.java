@@ -5,6 +5,8 @@
  */
 package fri.worldOfFri.prostredie.npc;
 
+import fri.worldOfFri.hra.Hrac;
+
 /**
  *
  * @author janik
@@ -14,5 +16,7 @@ public interface IVrcholRozhovoru {
     boolean jeKoniec();
     void vypis();
     IVrcholRozhovoru getDalsi(char znak);
+
+    public void akcia(Hrac hrac);
     
 }
