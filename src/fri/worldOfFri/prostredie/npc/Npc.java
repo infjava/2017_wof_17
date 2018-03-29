@@ -25,14 +25,17 @@ public class Npc {
     }
 
     public void hovor() {
-        this.zaciatokRozhovoru.vypis();
-        
         Scanner vstup = new Scanner(System.in);
         
-        System.out.print("> ");
-        char znak = vstup.nextLine().charAt(0);
-        
-        VrcholRozhovoru dalsi = this.zaciatokRozhovoru.getDalsi(znak);
+        VrcholRozhovoru dalsi = this.zaciatokRozhovoru;
+        while (!dalsi.jeKoniec()) {            
+            dalsi.vypis();
+            
+            System.out.print("> ");
+            char znak = vstup.nextLine().charAt(0);
+            
+            dalsi = dalsi.getDalsi(znak);
+        }
         dalsi.vypis();
     }
 }

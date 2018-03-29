@@ -78,7 +78,7 @@ public class Mapa {
         ucitelZaciatok.pridajOdpoved("nemate navleky?", ucitelNie);
         
         ucitelPozdravenie.pridajOdpoved("nemate navleky?", ucitelDaNavleky);
-        ucitelPozdravenie.pridajOdpoved("nemate pizzu?", ucitelNie);
+        ucitelPozdravenie.pridajOdpoved("nemate pizzu?", ucitelZjePizzu);
         
         ucitelZjePizzu.pridajOdpoved("nemate pizzu?", ucitelDaNavleky);
         

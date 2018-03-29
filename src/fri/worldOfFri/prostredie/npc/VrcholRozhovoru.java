@@ -48,4 +48,8 @@ public class VrcholRozhovoru {
         
         return this.odpovede.get(index).getDalsiVrchol();
     }
+
+    boolean jeKoniec() {
+        return this.odpovede.isEmpty();
+    }
 }
