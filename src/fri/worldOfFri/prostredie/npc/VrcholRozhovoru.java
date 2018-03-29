@@ -17,8 +17,7 @@ public class VrcholRozhovoru {
     private final String hlaska;
 
     public VrcholRozhovoru() {
-        this.odpovede = new ArrayList<Odpoved>();
-        this.hlaska = null;
+        this(null);
     }
 
     public VrcholRozhovoru(String hlaska) {
