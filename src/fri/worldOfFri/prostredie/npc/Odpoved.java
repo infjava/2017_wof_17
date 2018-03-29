@@ -12,9 +12,9 @@ package fri.worldOfFri.prostredie.npc;
 public class Odpoved {
 
     private final String odpoved;
-    private final VrcholRozhovoru dalsiVrchol;
+    private final IVrcholRozhovoru dalsiVrchol;
 
-    public Odpoved(String odpoved, VrcholRozhovoru dalsiVrchol) {
+    public Odpoved(String odpoved, IVrcholRozhovoru dalsiVrchol) {
         this.odpoved = odpoved;
         this.dalsiVrchol = dalsiVrchol;
     }
@@ -23,7 +23,7 @@ public class Odpoved {
         return this.odpoved;
     }
 
-    public VrcholRozhovoru getDalsiVrchol() {
+    public IVrcholRozhovoru getDalsiVrchol() {
         return this.dalsiVrchol;
     }
     

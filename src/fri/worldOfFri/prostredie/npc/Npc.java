@@ -13,9 +13,9 @@ import java.util.Scanner;
  */
 public class Npc {
     private final String meno;
-    private final VrcholRozhovoru zaciatokRozhovoru;
+    private final IVrcholRozhovoru zaciatokRozhovoru;
 
-    public Npc(String meno, VrcholRozhovoru zaciatokRozhovoru) {
+    public Npc(String meno, IVrcholRozhovoru zaciatokRozhovoru) {
         this.meno = meno;
         this.zaciatokRozhovoru = zaciatokRozhovoru;
     }
@@ -27,7 +27,7 @@ public class Npc {
     public void hovor() {
         Scanner vstup = new Scanner(System.in);
         
-        VrcholRozhovoru dalsi = this.zaciatokRozhovoru;
+        IVrcholRozhovoru dalsi = this.zaciatokRozhovoru;
         while (!dalsi.jeKoniec()) {            
             dalsi.vypis();
             

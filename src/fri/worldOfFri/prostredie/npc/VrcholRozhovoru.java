@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author janik
  */
-public class VrcholRozhovoru {
+public class VrcholRozhovoru implements IVrcholRozhovoru {
 
     private final ArrayList<Odpoved> odpovede;
     private final String hlaska;
@@ -25,11 +25,12 @@ public class VrcholRozhovoru {
         this.hlaska = hlaska;
     }
 
-    public void pridajOdpoved(String odpoved, VrcholRozhovoru dalsiVrchol) {
+    public void pridajOdpoved(String odpoved, IVrcholRozhovoru dalsiVrchol) {
         this.odpovede.add(new Odpoved(odpoved, dalsiVrchol));
     }
 
-    void vypis() {
+    @Override
+    public void vypis() {
         if (this.hlaska != null) {
             System.out.println(this.hlaska);
         }
@@ -42,13 +43,15 @@ public class VrcholRozhovoru {
         }
     }
 
-    VrcholRozhovoru getDalsi(char znak) {
+    @Override
+    public IVrcholRozhovoru getDalsi(char znak) {
         int index = znak - 'A';
         
         return this.odpovede.get(index).getDalsiVrchol();
     }
 
-    boolean jeKoniec() {
+    @Override
+    public boolean jeKoniec() {
         return this.odpovede.isEmpty();
     }
 }

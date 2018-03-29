@@ -15,6 +15,7 @@ import fri.worldOfFri.prostredie.dvere.VytahoveDvere;
 import fri.worldOfFri.prostredie.dvere.Dvere;
 import fri.worldOfFri.prostredie.dvere.SekerouOdomykatelneDvere;
 import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.prostredie.npc.PredmetDavajuciVrcholRozhovoru;
 import fri.worldOfFri.prostredie.npc.VrcholRozhovoru;
 import java.util.ArrayList;
 
@@ -71,7 +72,7 @@ public class Mapa {
         VrcholRozhovoru ucitelZaciatok = new VrcholRozhovoru();
         VrcholRozhovoru ucitelPozdravenie = new VrcholRozhovoru("dobry den\nco potrebujete?");
         VrcholRozhovoru ucitelNie = new VrcholRozhovoru("nie!");
-        VrcholRozhovoru ucitelDaNavleky = new VrcholRozhovoru("nech sa paci");
+        PredmetDavajuciVrcholRozhovoru ucitelDaNavleky = new PredmetDavajuciVrcholRozhovoru("nech sa paci");
         VrcholRozhovoru ucitelZjePizzu = new VrcholRozhovoru("chrum chrum chrum... uz nie");
         
         ucitelZaciatok.pridajOdpoved("dobry den", ucitelPozdravenie);
