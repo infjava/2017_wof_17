@@ -3,6 +3,11 @@ package fri.worldOfFri.hra;
 import fri.worldOfFri.prikazy.Prikaz;
 import fri.worldOfFri.prikazy.Parser;
 import fri.worldOfFri.prostredie.Mapa;
+import fri.worldOfFri.vynimky.DvereNepriechodneException;
+import fri.worldOfFri.vynimky.PredmetNenajdenyException;
+import fri.worldOfFri.vynimky.SmrtException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Trieda Hra je hlavna trieda aplikacie "World of FRI".
@@ -79,41 +84,46 @@ public class Hra  {
      * @return true ak prikaz ukonci hru, inak vrati false.
      */
     private boolean vykonajPrikaz(Prikaz prikaz) {
-        boolean jeKoniec = false;
-
-        if (prikaz.jeNeznamy()) {
-            System.out.println("Nerozumiem, co mas na mysli...");
-            return false;
-        }
-
-        String nazovPrikazu = prikaz.getNazov();
-        
-        switch (nazovPrikazu) {
-            case "pomoc":
-                this.vypisNapovedu();
+        try {
+            boolean jeKoniec = false;
+            
+            if (prikaz.jeNeznamy()) {
+                System.out.println("Nerozumiem, co mas na mysli...");
                 return false;
-            case "chod":
-                this.chodDoMiestnosti(prikaz);
-                return false;
-            case "ukonci":
-                return this.ukonciHru(prikaz);
-            case "zdvihni":
-                this.zdvihniPredmet(prikaz);
-                return false;
-            case "staty":
-                this.vypisStaty(prikaz);
-                return false;
-            case "poloz":
-                this.polozPredmet(prikaz);
-                return false;
-            case "pouzi":
-                this.pouziPredmet(prikaz);
-                return false;
-            case "hovor":
-                this.hovorSNpc(prikaz);
-                return false;
-            default:
-                return false;
+            }
+            
+            String nazovPrikazu = prikaz.getNazov();
+            
+            switch (nazovPrikazu) {
+                case "pomoc":
+                    this.vypisNapovedu();
+                    return false;
+                case "chod":
+                    this.chodDoMiestnosti(prikaz);
+                    return false;
+                case "ukonci":
+                    return this.ukonciHru(prikaz);
+                case "zdvihni":
+                    this.zdvihniPredmet(prikaz);
+                    return false;
+                case "staty":
+                    this.vypisStaty(prikaz);
+                    return false;
+                case "poloz":
+                    this.polozPredmet(prikaz);
+                    return false;
+                case "pouzi":
+                    this.pouziPredmet(prikaz);
+                    return false;
+                case "hovor":
+                    this.hovorSNpc(prikaz);
+                    return false;
+                default:
+                    return false;
+            }
+        } catch (SmrtException ex) {
+            System.out.println("Zomrel si!");
+            return true;
         }
     }
 
@@ -144,11 +154,15 @@ public class Hra  {
 
         String smer = prikaz.getParameter();
 
-        if (this.hrac.chod(smer)) {
-            System.out.print("Teraz si v miestnosti ");
-            this.hrac.getAktualnaMiestnost().vypisInfo();
-        } else {
-            System.out.println("Tam nie je vychod!");
+        try {
+            if (this.hrac.chod(smer)) {
+                System.out.print("Teraz si v miestnosti ");
+                this.hrac.getAktualnaMiestnost().vypisInfo();
+            } else {
+                System.out.println("Tam nie je vychod!");
+            }
+        } catch (DvereNepriechodneException ex) {
+            System.out.println("Cez dvere sa neda prejst");
         }
     }
 
@@ -171,7 +185,9 @@ public class Hra  {
     }
 
     private void zdvihniPredmet(Prikaz prikaz) {
-        if (!this.hrac.zdvihniPredmet(prikaz.getParameter())) {
+        try {
+            this.hrac.zdvihniPredmet(prikaz.getParameter());
+        } catch (PredmetNenajdenyException ex) {
             System.out.println("Nezadarilo sa");
         }
     }
@@ -186,7 +202,7 @@ public class Hra  {
         }
     }
 
-    private void pouziPredmet(Prikaz prikaz) {
+    private void pouziPredmet(Prikaz prikaz) throws SmrtException {
         this.hrac.pouziPredmet(prikaz.getParameter());
     }
 

@@ -6,6 +6,7 @@
 package fri.worldOfFri.prostredie.dvere;
 
 import fri.worldOfFri.prostredie.Miestnost;
+import fri.worldOfFri.vynimky.DvereNepriechodneException;
 import java.util.Arrays;
 
 
@@ -21,9 +22,10 @@ public class SekerouOdomykatelneDvere implements IDvere {
     }
 
     @Override
-    public Miestnost getCiel(Miestnost odkial) {
+    public Miestnost getCiel(Miestnost odkial)
+            throws DvereNepriechodneException {
         if (this.zamknute) {
-            return null;
+            throw new DvereNepriechodneException();
         } else if (odkial == this.miestnostA) {
             return this.miestnostB;
         } else if (odkial == this.miestnostB) {

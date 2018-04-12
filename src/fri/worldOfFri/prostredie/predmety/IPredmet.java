@@ -6,6 +6,7 @@
 package fri.worldOfFri.prostredie.predmety;
 
 import fri.worldOfFri.hra.Hrac;
+import fri.worldOfFri.vynimky.SmrtException;
 
 /**
  *
@@ -15,7 +16,8 @@ public interface IPredmet {
 
     String getNazov();
 
-    void pouziSa(Hrac hrac);
+    void pouziSa(Hrac hrac)
+            throws SmrtException;
     
     boolean daSaPolozit();
     

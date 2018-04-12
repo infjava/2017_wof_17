@@ -9,6 +9,9 @@ import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.prostredie.Miestnost;
 import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.vynimky.DvereNepriechodneException;
+import fri.worldOfFri.vynimky.PredmetNenajdenyException;
+import fri.worldOfFri.vynimky.SmrtException;
 import java.util.HashMap;
 
 /**
@@ -29,7 +32,8 @@ public class Hrac {
         return this.aktualnaMiestnost;
     }
 
-    boolean chod(String smer) {
+    boolean chod(String smer)
+            throws DvereNepriechodneException {
         Miestnost nova = this.aktualnaMiestnost.getVychod(smer);
         
         if (nova == null) {
@@ -40,15 +44,15 @@ public class Hrac {
         return true;
     }
 
-    boolean zdvihniPredmet(String nazovPredmetu) {
+    void zdvihniPredmet(String nazovPredmetu)
+            throws PredmetNenajdenyException {
         IPredmet zdvihany = this.aktualnaMiestnost.odstranPredmet(nazovPredmetu);
         
         if (zdvihany == null) {
-            return false;
+            throw new PredmetNenajdenyException();
         }
         
         this.inventar.put(nazovPredmetu, zdvihany);
-        return true;
     }
 
     void vypisStaty() {
@@ -79,7 +83,8 @@ public class Hrac {
         return true;
     }
 
-    void pouziPredmet(String nazovPredmetu) {
+    void pouziPredmet(String nazovPredmetu)
+            throws SmrtException {
         IPredmet pouzivany = this.inventar.get(nazovPredmetu);
         
         if (pouzivany == null) {

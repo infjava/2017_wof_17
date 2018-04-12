@@ -9,7 +9,11 @@ import fri.worldOfFri.prostredie.dvere.IDvere;
 import fri.worldOfFri.prostredie.dvere.SekerouOdomykatelneDvere;
 import fri.worldOfFri.hra.Hrac;
 import fri.worldOfFri.prostredie.Miestnost;
+import fri.worldOfFri.vynimky.DvereNepriechodneException;
+import fri.worldOfFri.vynimky.SmrtException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Sekera implements IPredmet {
 
@@ -19,12 +23,13 @@ public class Sekera implements IPredmet {
     }
 
     @Override
-    public void pouziSa(Hrac hrac) {
+    public void pouziSa(Hrac hrac)
+            throws SmrtException {
         Random r = new Random();
 
         if (r.nextInt(100) < 20) {
             System.out.println("Je mi to veeelmi luto, ale si mrtvy!");
-            System.exit(0);
+            throw new SmrtException();
         }
         
         final Miestnost aktualnaMiestnost = hrac.getAktualnaMiestnost();
@@ -35,8 +40,12 @@ public class Sekera implements IPredmet {
             if (dvere instanceof SekerouOdomykatelneDvere) {
                 ((SekerouOdomykatelneDvere)dvere).odomkni();
                 
-                System.out.println("Odomkol si dvere do miestnosti "
-                        + dvere.getCiel(aktualnaMiestnost).getNazov());
+                try {
+                    System.out.println("Odomkol si dvere do miestnosti "
+                            + dvere.getCiel(aktualnaMiestnost).getNazov());
+                } catch (DvereNepriechodneException ex) {
+                    
+                }
             }
         }
     }

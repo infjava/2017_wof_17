@@ -6,6 +6,7 @@
 package fri.worldOfFri.prostredie.dvere;
 
 import fri.worldOfFri.prostredie.Miestnost;
+import fri.worldOfFri.vynimky.DvereNepriechodneException;
 
 /**
  *
@@ -13,7 +14,8 @@ import fri.worldOfFri.prostredie.Miestnost;
  */
 public interface IDvere {
 
-    Miestnost getCiel(Miestnost odkial);
+    Miestnost getCiel(Miestnost odkial)
+            throws DvereNepriechodneException;
     
     String getNazov(Miestnost odkial);
     

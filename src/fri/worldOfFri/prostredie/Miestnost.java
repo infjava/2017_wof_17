@@ -4,6 +4,7 @@ package fri.worldOfFri.prostredie;
 import fri.worldOfFri.prostredie.predmety.IPredmet;
 import fri.worldOfFri.prostredie.dvere.IDvere;
 import fri.worldOfFri.prostredie.npc.Npc;
+import fri.worldOfFri.vynimky.DvereNepriechodneException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -57,7 +58,8 @@ public class Miestnost {
         this.vychody.put(vychod.getNazov(this), vychod);
     }
 
-    public Miestnost getVychod(String smer) {
+    public Miestnost getVychod(String smer)
+            throws DvereNepriechodneException {
         final IDvere ciel = this.vychody.get(smer);
         
         if (ciel == null) {
