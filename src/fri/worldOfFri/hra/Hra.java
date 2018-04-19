@@ -119,6 +119,9 @@ public class Hra  {
                 case "nahraj":
                     this.nahrajMakro(prikaz);
                     return false;
+                case "zopakuj":
+                    this.zopakujMakro(prikaz);
+                    return false;
                 default:
                     return false;
             }
@@ -218,6 +221,15 @@ public class Hra  {
             Parser.getInstancia().ulozMakro(nazovMakra, pocetPrikazov);
         } catch (IOException ex) {
             System.out.println("Chyba zapisu");
+        }
+    }
+
+    private void zopakujMakro(Prikaz prikaz) {
+        String nazovMakra = prikaz.getParameter();
+        try {
+            Parser.getInstancia().zopakujMakro(nazovMakra);
+        } catch (IOException ex) {
+            System.out.println("Chyba citania");
         }
     }
 }
