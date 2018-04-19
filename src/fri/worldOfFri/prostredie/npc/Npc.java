@@ -6,7 +6,7 @@
 package fri.worldOfFri.prostredie.npc;
 
 import fri.worldOfFri.hra.Hrac;
-import java.util.Scanner;
+import fri.worldOfFri.prikazy.Parser;
 
 /**
  *
@@ -26,15 +26,12 @@ public class Npc {
     }
 
     public void hovor(Hrac hrac) {
-        Scanner vstup = new Scanner(System.in);
-        
         IVrcholRozhovoru dalsi = this.zaciatokRozhovoru;
         while (!dalsi.jeKoniec()) {            
             dalsi.vypis();
             dalsi.akcia(hrac);
             
-            System.out.print("> ");
-            char znak = vstup.nextLine().charAt(0);
+            char znak = Parser.getInstancia().nacitajString(">").charAt(0);
             
             dalsi = dalsi.getDalsi(znak);
         }

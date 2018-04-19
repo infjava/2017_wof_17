@@ -30,7 +30,6 @@ import java.util.logging.Logger;
 */
  
 public class Hra  {
-    private Parser parser;
     private final Hrac hrac;
     
     /**
@@ -39,8 +38,6 @@ public class Hra  {
     public Hra() {
         Mapa mapa = new Mapa();
         this.hrac = new Hrac(mapa);
-        
-        this.parser = new Parser();
     }
 
     /**
@@ -57,7 +54,7 @@ public class Hra  {
         boolean jeKoniec;
         
         do {
-            Prikaz prikaz = this.parser.nacitajPrikaz();
+            Prikaz prikaz = Parser.getInstancia().nacitajPrikaz();
             jeKoniec = this.vykonajPrikaz(prikaz);
         } while (!jeKoniec);
         
