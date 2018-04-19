@@ -6,6 +6,7 @@ import fri.worldOfFri.prostredie.Mapa;
 import fri.worldOfFri.vynimky.DvereNepriechodneException;
 import fri.worldOfFri.vynimky.PredmetNenajdenyException;
 import fri.worldOfFri.vynimky.SmrtException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -115,6 +116,9 @@ public class Hra  {
                 case "hovor":
                     this.hovorSNpc(prikaz);
                     return false;
+                case "nahraj":
+                    this.nahrajMakro(prikaz);
+                    return false;
                 default:
                     return false;
             }
@@ -205,5 +209,15 @@ public class Hra  {
 
     private void hovorSNpc(Prikaz prikaz) {
         this.hrac.hovorSNpc(prikaz.getParameter());
+    }
+
+    private void nahrajMakro(Prikaz prikaz) {
+        String nazovMakra = prikaz.getParameter();
+        int pocetPrikazov = Parser.getInstancia().nacitajInt("Zadaj pocet prikazov:");
+        try {
+            Parser.getInstancia().ulozMakro(nazovMakra, pocetPrikazov);
+        } catch (IOException ex) {
+            System.out.println("Chyba zapisu");
+        }
     }
 }
