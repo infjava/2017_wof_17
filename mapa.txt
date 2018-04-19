@@ -1,0 +1,83 @@
+miestnost terasa
+    prave tu prebieha FRIfest
+
+    dvere vratnica
+    dvere aula
+
+    predmet sekera
+    predmet mapa
+    predmet navigacia
+    
+    npc ucitel
+
+miestnost vratnica
+    vchod na fakultu
+
+    dvere ra
+    dvere rb
+
+miestnost ra
+    dolezitejsia chodba na fakulte
+
+    dvere wc (SekerouOdomykatelneDvere)
+    dvere ra13
+    dvere bufet
+    dvere aula
+
+miestnost wc
+    niekto tu momentalne faxuje
+
+miestnost ra13
+    pocitacovy labak
+
+miestnost bufet
+    citim tu vonu... horaliek
+
+    dvere aula
+
+miestnost aula
+    tu chod opatrne, potichucku,
+    aby nepadla strecha
+
+miestnost rb
+    temna chodba
+
+    dvere sklad
+
+miestnost sklad
+    sklad vrazednych zbrani
+
+miestnost vytah
+    vozi hore-dole
+
+    dvere ra ra1 ra2 ra3 (VytahoveDvere)
+    predmet ovladac
+
+miestnost ra1
+    ra na prvom poschodi
+
+miestnost ra2
+    ra na druhom poschodi
+
+miestnost ra3
+    ra na tretom poschodi
+
+npc ucitel
+    zaciatok:
+        * dobry den => pozdravenie
+        * nemate navleky? => nie
+    pozdravenie:
+        dobry den
+        co potrebujete?
+        * nemate navleky? => daNavleky
+        * nemate pizzu? => zjePizzu
+    nie:
+        nie!
+    daNavleky:
+        nech sa paci
+        # predmet navleky
+    zjePizzu:
+        chrum chrum chrum... uz nie
+        * nemate navleky? => daNavleky
+
+start terasa
