@@ -99,7 +99,14 @@ public class Mapa {
         for (Vychod vychod : vsetkyVychody) {
             Miestnost miestnostDo = this.getMiestnost(vychod.getMiestnostiDo()[0]);
             Miestnost miestnostZ = vychod.getMiestnostZ();
-            Dvere dvere = new Dvere(miestnostZ, miestnostDo);
+            IDvere dvere;
+            switch (vychod.getNazovTriedy()) {
+                case "Dvere":
+                    dvere = new Dvere(miestnostZ, miestnostDo);
+                    break;
+                default:
+                    throw new AssertionError();
+            }
             miestnostZ.nastavVychod(dvere);
             miestnostDo.nastavVychod(dvere);
         }
