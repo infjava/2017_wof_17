@@ -17,7 +17,12 @@ import fri.worldOfFri.prostredie.dvere.SekerouOdomykatelneDvere;
 import fri.worldOfFri.prostredie.npc.Npc;
 import fri.worldOfFri.prostredie.npc.PredmetDavajuciVrcholRozhovoru;
 import fri.worldOfFri.prostredie.npc.VrcholRozhovoru;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,10 +30,51 @@ import java.util.ArrayList;
  */
 public class Mapa {
 
-    private final Miestnost startovaciaMiestnost;
+    private Miestnost startovaciaMiestnost;
     private final ArrayList<Miestnost> zoznamMiestnosti;
 
     public Mapa() {
+        this.startovaciaMiestnost = null;
+        this.zoznamMiestnosti = new ArrayList<Miestnost>();
+        
+        File suborSMapou = new File("mapa.txt");
+        try (Scanner citacMapy = new Scanner(suborSMapou)) {
+            while (citacMapy.hasNextLine()) {
+                String riadok = citacMapy.nextLine();
+                
+                if (riadok.trim().isEmpty()) {
+                    continue;
+                }
+                
+                // zacina odsadenim?
+                if (riadok.startsWith(" ")) {
+                    // toto este doplnime
+                } else {
+                    //String[] slova = riadok.split(" ");
+                    Scanner slova = new Scanner(riadok);
+                    String prikaz = slova.next();
+                    String parameter = slova.next();
+                    
+                    switch (prikaz) {
+                        case "miestnost":
+                            this.nacitajMiestnost(parameter, citacMapy);
+                            break;
+                        case "npc":
+                            this.nacitajNpc(parameter, citacMapy);
+                            break;
+                        case "start":
+                            this.nacitajStart(parameter, citacMapy);
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException("Nepodarilo sa nacitat mapu", ex);
+        }
+        
+        /*
         this.zoznamMiestnosti = new ArrayList<Miestnost>();
         
         // vytvorenie miestnosti
@@ -111,6 +157,7 @@ public class Mapa {
         this.vytvorDvere(rb, sklad);
 
         this.startovaciaMiestnost = terasa;  // startovacia miestnost hry
+        */
     }
 
     public Miestnost getStartovaciaMiestnost() {
@@ -216,5 +263,28 @@ public class Mapa {
         ret.add(0, this.zoznamMiestnosti.get(cisloVychod));
         
         return ret;
+    }
+
+    private void nacitajMiestnost(String nazovMiestnosti, Scanner citacMapy) {
+        String riadokPopisu;
+        //String popisMiestnosti = "";
+        StringBuilder popisMiestnosti = new StringBuilder();
+        do {
+            riadokPopisu = citacMapy.nextLine().trim();
+            //popisMiestnosti += riadokPopisu + '\n';
+            popisMiestnosti.append(riadokPopisu);
+            popisMiestnosti.append('\n');
+        } while (!riadokPopisu.isEmpty());
+        
+        Miestnost nacitana = new Miestnost(nazovMiestnosti, popisMiestnosti.toString().trim());
+        this.zoznamMiestnosti.add(nacitana);
+    }
+
+    private void nacitajNpc(String parameter, Scanner citacMapy) {
+        
+    }
+
+    private void nacitajStart(String nazovMiestnosti, Scanner citacMapy) {
+        this.startovaciaMiestnost = this.getMiestnost(nazovMiestnosti);
     }
 }
