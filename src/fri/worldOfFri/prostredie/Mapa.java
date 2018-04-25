@@ -37,6 +37,10 @@ public class Mapa {
         this.startovaciaMiestnost = null;
         this.zoznamMiestnosti = new ArrayList<Miestnost>();
         
+        Miestnost posledna = null;
+        
+        ArrayList<Vychod> vsetkyVychody = new ArrayList<Vychod>();
+        
         File suborSMapou = new File("mapa.txt");
         try (Scanner citacMapy = new Scanner(suborSMapou)) {
             while (citacMapy.hasNextLine()) {
@@ -48,7 +52,23 @@ public class Mapa {
                 
                 // zacina odsadenim?
                 if (riadok.startsWith(" ")) {
-                    // toto este doplnime
+                    if (posledna != null) {
+                        Scanner slova = new Scanner(riadok);
+                        String prikaz = slova.next();
+                        switch (prikaz) {
+                            case "dvere":
+                                vsetkyVychody.add(this.nacitajDvere(posledna, slova));
+                                break;
+                            case "predmet":
+                                
+                                break;
+                            case "npc":
+                                
+                                break;
+                            default:
+                                throw new AssertionError();
+                        }
+                    }
                 } else {
                     //String[] slova = riadok.split(" ");
                     Scanner slova = new Scanner(riadok);
@@ -57,13 +77,15 @@ public class Mapa {
                     
                     switch (prikaz) {
                         case "miestnost":
-                            this.nacitajMiestnost(parameter, citacMapy);
+                            posledna = this.nacitajMiestnost(parameter, citacMapy);
                             break;
                         case "npc":
                             this.nacitajNpc(parameter, citacMapy);
+                            posledna = null;
                             break;
                         case "start":
                             this.nacitajStart(parameter, citacMapy);
+                            posledna = null;
                             break;
                         default:
                             throw new AssertionError();
@@ -72,6 +94,14 @@ public class Mapa {
             }
         } catch (FileNotFoundException ex) {
             throw new RuntimeException("Nepodarilo sa nacitat mapu", ex);
+        }
+        
+        for (Vychod vychod : vsetkyVychody) {
+            Miestnost miestnostDo = this.getMiestnost(vychod.getMiestnostiDo()[0]);
+            Miestnost miestnostZ = vychod.getMiestnostZ();
+            Dvere dvere = new Dvere(miestnostZ, miestnostDo);
+            miestnostZ.nastavVychod(dvere);
+            miestnostDo.nastavVychod(dvere);
         }
         
         /*
@@ -265,7 +295,7 @@ public class Mapa {
         return ret;
     }
 
-    private void nacitajMiestnost(String nazovMiestnosti, Scanner citacMapy) {
+    private Miestnost nacitajMiestnost(String nazovMiestnosti, Scanner citacMapy) {
         String riadokPopisu;
         //String popisMiestnosti = "";
         StringBuilder popisMiestnosti = new StringBuilder();
@@ -278,6 +308,7 @@ public class Mapa {
         
         Miestnost nacitana = new Miestnost(nazovMiestnosti, popisMiestnosti.toString().trim());
         this.zoznamMiestnosti.add(nacitana);
+        return nacitana;
     }
 
     private void nacitajNpc(String parameter, Scanner citacMapy) {
@@ -286,5 +317,14 @@ public class Mapa {
 
     private void nacitajStart(String nazovMiestnosti, Scanner citacMapy) {
         this.startovaciaMiestnost = this.getMiestnost(nazovMiestnosti);
+    }
+
+    private Vychod nacitajDvere(Miestnost posledna, Scanner slova) {
+        String smer = slova.next();
+        /*Miestnost ciel = this.getMiestnost(smer);
+        IDvere dvere = new Dvere(posledna, ciel);
+        posledna.nastavVychod(dvere);
+        ciel.nastavVychod(dvere);*/
+        return new Vychod(posledna, new String[] {smer}, "Dvere");
     }
 }
